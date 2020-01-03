@@ -70,7 +70,6 @@ export default {
     ...mapMutations("public", ["ADD_TO_CART"]),
     addToCart(food, num) {
       this.ADD_TO_CART(food);
-      console.log("showmovebot", this.showMoveDot);
       if (!this.userInfo.token) {
         //测试
         console.log(event.target)
@@ -101,7 +100,6 @@ export default {
       el.style.transition = "transform .88s cubic-bezier(0.3,-0.25,0.7,-0.15)";
       el.style.transition = "transform .88s linear";
       this.showMoveDot = this.showMoveDot.map(item => false);
-      console.log("cubic", this.showMoveDot);
       // 设置透明度
       el.style.opcaity = 1;
       // 监听小球动画结束方法
@@ -130,7 +128,6 @@ export default {
     this.$nextTick(() => {
       let contentWraperWidth = 0; //初始化容器宽度
       let el = this.$refs.foodItem;
-      console.log("el", el);
       if (el) {
         for (let i = 0; i < el.length; i++) {
           contentWraperWidth += el[i].clientWidth;
