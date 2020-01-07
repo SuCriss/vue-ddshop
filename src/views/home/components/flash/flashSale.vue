@@ -10,8 +10,8 @@
           <span class="item">{{ timeData.seconds | timeFormat }}</span>
         </template>
       </van-count-down>
-      <div class="more" @click='moreBtn'>更多</div>
-      <FlashFood :flash_sale_product_list='flash_sale_product_list' />
+      <div class="more" @click="moreBtn">更多</div>
+      <FlashFood :flash_sale_product_list="flash_sale_product_list" />
     </div>
   </div>
 </template>
@@ -19,16 +19,16 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import { CountDown,Toast } from "vant";
-import FlashFood from './flashFood'
+import { CountDown, Toast } from "vant";
+import FlashFood from "./flashFood";
 export default {
-  props:{
-    flash_sale_product_list:Array
+  props: {
+    flash_sale_product_list: Array
   },
   //import引入的组件需要注入到对象中才能使用
   components: {
     [CountDown.name]: CountDown,
-    FlashFood,
+    FlashFood
   },
   data() {
     //这里存放数据
@@ -43,13 +43,13 @@ export default {
   //方法集合
   methods: {
     //   更多
-      moreBtn(){
-          Toast({
-              message:'更多',
-              forbidClick:true,
-              duration:800
-          })
-      }
+    moreBtn() {
+      Toast({
+        message: "更多",
+        forbidClick: true,
+        duration: 800
+      });
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
@@ -75,35 +75,33 @@ export default {
     // height: 1.5625rem;
   }
   .title {
-    display: inline-block;
+    float: left;
     padding-left: 0.3125rem;
     border-left: 4px solid #3cb963;
     height: 1.3125rem;
     vertical-align: middle;
-    float: left;
   }
   .item {
     display: inline-block;
-    width:1rem;
+    width: 1rem;
     margin-right: 5px;
     color: #fff;
     font-size: 14px;
     text-align: center;
     background-color: #1989fa;
   }
-  .countStyle{
+  .countStyle {
     float: left;
     margin-left: 0.8rem;
-}
-.more{
-    display: inline-block;
+  }
+  .more {
     float: right;
     margin-right: 0.3125rem;
-    font-size:0.8rem;
+    font-size: 0.8rem;
     height: 1.4rem;
     line-height: 1.4rem;
     color: #3cb963;
     vertical-align: middle;
-}
+  }
 }
 </style>
