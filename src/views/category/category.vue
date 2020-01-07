@@ -5,18 +5,20 @@
     <div class="listWrapper">
       <!--左边-->
       <div class="leftWrapper">
-        <ul class="wrapper">
-          <li
-            class="categoryItem"
-            v-for="(cate, index) in categoryList"
-            :class="{ selected: currentIndex === index }"
-            @click="clickLeftLi(index)"
-            :key="cate.id"
-            ref="sidebar_item"
-          >
-            <span class="textWrapper">{{ cate.name }}</span>
-          </li>
-        </ul>
+        <div>
+          <ul class="wrapper">
+            <li
+              class="categoryItem"
+              v-for="(cate, index) in categoryList"
+              :class="{ selected: currentIndex === index }"
+              @click="clickLeftLi(index)"
+              :key="cate.id"
+              ref="sidebar_item"
+            >
+              <span class="textWrapper">{{ cate.name }}</span>
+            </li>
+          </ul>
+        </div>
       </div>
       <!-- 右边 -->
       <div class="rightWraper">
@@ -90,6 +92,7 @@ export default {
     async _initData() {
       this.getCategoryApi();
       this.getContentData();
+      this._initBScroll();
     },
     async clickLeftLi(index) {
       console.log(index);
@@ -126,7 +129,6 @@ export default {
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     this._initData();
-    this._initBScroll();
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前

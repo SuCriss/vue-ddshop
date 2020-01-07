@@ -8,6 +8,7 @@
           ref="foodItem"
           v-for="(food, index) in flash_sale_product_list"
           :key="index"
+          @click.stop='goToGoodsDetail(food)'
         >
           <img v-lazy="food.small_image" alt="" class="foodImage" />
           <span class="title">{{ food.name }}</span>
@@ -68,6 +69,7 @@ export default {
   //方法集合
   methods: {
     ...mapMutations("public", ["ADD_TO_CART"]),
+    //加入购物车
     addToCart(food, num) {
       this.ADD_TO_CART(food);
       if (!this.userInfo.token) {
@@ -80,6 +82,22 @@ export default {
         this.elTop = event.target.getBoundingClientRect().top;
         this.showMoveDot = [...this.showMoveDot, true];
       }
+    },
+    //跳转到商品详情页
+    goToGoodsDetail(goods){
+      this.$router.push({
+        name:'goodsDetail',
+        query:{
+          id: goods.id,
+          name: goods.name,
+          small_image: goods.small_image,
+          price: goods.price,
+          spec: goods.spec,
+          total_sales: goods.total_sales,
+          origin_price: goods.origin_price,
+          isFlash:true
+        }
+      })
     },
     beforeEnter(el) {
       //设置transform值

@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/home/Home.vue";
 import dashboard from "../views/dashboard/dashboard.vue";
 import Category from '../views/category/category'
+import GoodsDetail from '../views/goodsDetail/goodsDetail'
 import Maps from "../views/home/components/map/map.vue";
 
 Vue.use(VueRouter);
@@ -52,6 +53,11 @@ const routes = [
         component: Maps
       }
     ]
+  },
+  {
+    path:'/goodsDetail',
+    name:'goodsDetail',
+    component:GoodsDetail
   },
   {
     path: "/login",

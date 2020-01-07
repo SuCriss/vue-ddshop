@@ -4,7 +4,7 @@ import axios from "axios";
 import config from "./config";
 import store from "../store/index";
 import { Toast } from "vant";
-console.log(store)
+console.log(config)
 const instance = axios.create(config);
 // const baseUrl = config.baseURL
 // http请求拦截器
