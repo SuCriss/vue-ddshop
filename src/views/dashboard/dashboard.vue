@@ -95,19 +95,34 @@ export default {
     }
   },
   //监控data中的数据变化
-  watch: {},
+  watch: {
+    '$route':{
+      handler(val,oldVal){
+        this.tabbarSelected(val.name)
+      }
+    }
+  },
   //方法集合
   methods: {
     tab(index,name){
-      Toast({
-        message:name,
-        duration:800,
-        forbidClick:true
-      })
+      this.currIndex=index;
+      this.$router.push(name)
+    },
+    tabbarSelected (item) {
+      const mapType = {
+        home: 0,
+        category: 1,
+        eate: 2,
+        cart: 3,
+        mine: 4
+      }
+      this.active = mapType[item]
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.tabbarSelected(this.$route.name)
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
@@ -121,7 +136,7 @@ export default {
 </script>
 <style lang="less" scoped>
 //@import url(); 引入公共css类
-.moveToCart {
-  animation: mymove 0.5s ease-in-out;
-}
+// .moveToCart {
+//   animation: mymove 0.5s ease-in-out;
+// }
 </style>

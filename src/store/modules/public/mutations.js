@@ -48,12 +48,12 @@ const mutations = {
           smallImage: food.small_image,
           foodPrice: food.price
         });
-        Toast({
+        Toast.success({
           message: "成功加入购物车",
           duration: 800,
           forbidClick: true
         });
-      }, 900);
+      }, 500);
     } else {
       router.push("/login");
     }

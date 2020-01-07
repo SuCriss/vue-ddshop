@@ -49,11 +49,6 @@ export default {
     addCart(food, index) {
       this.ADD_TO_CART(food);
       console.log("food", food);
-      Toast.success({
-        message:'加入购物车成功，亲~',
-        duration:800,
-        forbidClick:true
-      })
     },
     // 商品详情页面
     goToGoodsDetail(goods) {

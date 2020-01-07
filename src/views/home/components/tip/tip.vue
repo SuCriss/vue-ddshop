@@ -1,84 +1,95 @@
 <!-- tip -->
 <template>
-<div id='tip'>
+  <div id="tip" @click="goToMyVip">
     <div class="tipBox" v-for="(tip, index) in tips" :key="index">
-        <img v-lazy="tip.imgUrl" />
-        <span class="tipText">{{tip.desc}}</span>
+      <img v-lazy="tip.imgUrl" />
+      <span class="tipText">{{ tip.desc }}</span>
     </div>
     <div>
-        <img :src="home_ad" class="adImg" alt="">
-        <div class="adTitle">加入<br>
+      <img :src="home_ad" class="adImg" alt="" />
+      <div class="adTitle">
+        加入<br />
         会员
       </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-
+import {mapState} from 'vuex'
 export default {
-    props:{
-        home_ad:String
-    },
-//import引入的组件需要注入到对象中才能使用
-components: {},
-data() {
-//这里存放数据
-return {
-    tips:[
-        {imgUrl:require('../../../../images/icon/transport.png'),desc:"最快29分钟送达"},
-        {imgUrl:require('../../../../images/icon/money.png'),desc:"0元起送 0配送费"},
-        {imgUrl:require('../../../../images/icon/seal.png'),desc:"安心退"}
-    ]
+  props: {
+    home_ad: String
+  },
+  //import引入的组件需要注入到对象中才能使用
+  components: {},
+  data() {
+    //这里存放数据
+    return {
+      tips: [
+        {
+          imgUrl: require("../../../../images/icon/transport.png"),
+          desc: "最快29分钟送达"
+        },
+        {
+          imgUrl: require("../../../../images/icon/money.png"),
+          desc: "0元起送 0配送费"
+        },
+        { imgUrl: require("../../../../images/icon/seal.png"), desc: "安心退" }
+      ]
+    };
+  },
+  //监听属性 类似于data概念
+  computed: {
+    ...mapState('public',['userInfo'])
+  },
+  //监控data中的数据变化
+  watch: {},
+  //方法集合
+  methods: {
+    goToMyVip () {
+      if (this.userInfo.token) {
+        this.$router.push({ name: 'muVip' });
+      } else {
+        this.$router.push('/login');
+      }
+    }
+  },
+  //生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {},
+  beforeCreate() {}, //生命周期 - 创建之前
+  beforeMount() {}, //生命周期 - 挂载之前
+  beforeUpdate() {}, //生命周期 - 更新之前
+  updated() {}, //生命周期 - 更新之后
+  beforeDestroy() {}, //生命周期 - 销毁之前
+  destroyed() {}, //生命周期 - 销毁完成
+  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
-},
-//监听属性 类似于data概念
-computed: {},
-//监控data中的数据变化
-watch: {},
-//方法集合
-methods: {
-
-},
-//生命周期 - 创建完成（可以访问当前this实例）
-created() {
-
-},
-//生命周期 - 挂载完成（可以访问DOM元素）
-mounted() {
-
-},
-beforeCreate() {}, //生命周期 - 创建之前
-beforeMount() {}, //生命周期 - 挂载之前
-beforeUpdate() {}, //生命周期 - 更新之前
-updated() {}, //生命周期 - 更新之后
-beforeDestroy() {}, //生命周期 - 销毁之前
-destroyed() {}, //生命周期 - 销毁完成
-activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
-}
 </script>
-<style lang='less' scoped>
+<style lang="less" scoped>
 //@import url(); 引入公共css类
-#tip{
-    margin-top: 0.3rem;
-    position: relative;
+#tip {
+  margin-top: 0.3rem;
+  position: relative;
 }
-.tipBox{
-    float: left;
-    width: 33%;
-    text-align: center;
+.tipBox {
+  float: left;
+  width: 33%;
+  text-align: center;
 }
-.tipBox img{
-    vertical-align: middle;
-    height: 1rem;
-    width: 1rem;
-    margin-right: 0.2rem;
+.tipBox img {
+  vertical-align: middle;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.2rem;
 }
-.tipText{
-    font-size: 0.6rem;
-    color:'#45c763'
+.tipText {
+  font-size: 0.6rem;
+  color: "#45c763";
 }
 .adImg {
   margin-top: 0.8rem;

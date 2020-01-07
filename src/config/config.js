@@ -1,9 +1,9 @@
 import QS from 'qs'
 // 不同环境对应的借口
-const PRODUCTION_URL = 'https://www.production.com/';
-const DEVELOPMENT_URL = 'http://localhost:8081/api/'
+const PRODUCTION_URL = 'http://172.20.10.6:8080/api/';
+const DEVELOPMENT_URL = 'http://172.20.10.6:8080/api/'
 // const DEVELOPMENT_URL = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api/';
-
+console.log(process.env.NODE_ENV)
 // 不同环境ajax请求前缀设置
 const baseURL = process.env.NODE_ENV === 'production'?PRODUCTION_URL:DEVELOPMENT_URL;
 
@@ -14,9 +14,6 @@ const config = {
     timeout:50000,
     // 返回数据类型
     responseType:'json',//default
-    headers:{
-        "Access-Control-Allow-Origin":'*'
-    },
     url:'/',
 
     // 请求方法

@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/home/Home.vue";
 import dashboard from "../views/dashboard/dashboard.vue";
+import Category from '../views/category/category'
 import Maps from "../views/home/components/map/map.vue";
 
 Vue.use(VueRouter);
@@ -34,6 +35,15 @@ const routes = [
         component: Home,
         meta: {
           keepAlive: true
+        }
+      },
+      {
+        // 分类
+        path:'category',
+        name:'category',
+        component:Category,
+        meta:{
+          keepAlive:true
         }
       },
       {

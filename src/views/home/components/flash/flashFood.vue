@@ -137,7 +137,7 @@ export default {
       this.$refs.ulContainer.style.width = contentWraperWidth + "px";
       if (!this.scroll) {
         this.scroll = new BScroll(".flashFoodItem", {
-          probeType: 2,
+          probeType: 3,
           startX: 0,
           click: true,
           scrollX: true,
@@ -163,6 +163,7 @@ export default {
 #flashFood {
   .flashFoodItem {
     width: 100%;
+    overflow: hidden;
     position: relative;
     .move_dot {
       position: fixed;
@@ -181,11 +182,14 @@ export default {
   }
   .itemContainer {
     display: flex;
+    width: 100%;
+    overflow: hidden;
     justify-content: flex-start;
   }
   .flash_food {
-    flex: 0 0 5.2rem;
+    flex: 0 0 5.5rem;
     align-items: center;
+    box-sizing: border-box;
     padding-right: 0.5rem;
     .foodImage {
       width: 100%;
@@ -195,13 +199,15 @@ export default {
     }
     .title {
       padding: 0.2rem;
-      font-size: 0.625rem;
+      font-size: 0.65rem;
       height: 1.8rem;
       line-height: 1rem;
       word-break: break-all;
+      overflow: hidden;
+      width:100%;
       display: -webkit-box;
       text-overflow: ellipsis;
-      line-clamp: 2;
+      line-clamp: 3;
       -webkit-box-orient: vertical;
     }
     .price {
@@ -209,16 +215,16 @@ export default {
       padding-left: 0.5rem;
       .nowPrice {
         color: #f37078;
-        font-size: 0.6rem;
+        font-size: 0.7rem;
       }
       .originPrice {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
         color: #999;
         text-decoration: line-through;
       }
       .buyCar {
         position: absolute;
-        right: -5px;
+        right: -10px;
         top: 0;
         width: 1.5rem;
         height: 1.5rem;
