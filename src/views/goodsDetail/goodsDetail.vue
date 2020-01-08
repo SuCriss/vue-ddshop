@@ -15,12 +15,12 @@
             ><div class="end">
               距结束
               <div class="endTime">
-                <van-count-down :time="time" format="HH:mm:ss">
+                <van-count-down :time="time">
                   <template v-slot="timeData">
-                    <span class="item">{{ timeData.hours | timeFormat }}</span>
+                    <span class="item">{{ timeData.hours | timeFormat }}</span>:
                     <span class="item">{{
                       timeData.minutes | timeFormat
-                    }}</span>
+                    }}</span>:
                     <span class="item">{{
                       timeData.seconds | timeFormat
                     }}</span>
