@@ -4,7 +4,7 @@
     <!--内容-->
     <div class="listWrapper">
       <!--左边-->
-      <div class="leftWrapper">
+      <div class="leftWrapper" v-show='cateWrapper' ref="ratingsWrapper">
         <div>
           <ul class="wrapper">
             <li
@@ -13,7 +13,7 @@
               :class="{ selected: currentIndex === index }"
               @click="clickLeftLi(index)"
               :key="cate.id"
-              ref="sidebar_item"
+              ref="sidebarItem"
             >
               <span class="textWrapper">{{ cate.name }}</span>
             </li>
@@ -45,6 +45,7 @@ export default {
     //这里存放数据
     return {
       currentIndex: 0,
+      cateWrapper:false,
       categoryList: [],
       categoriesDetailData: []
     };
@@ -59,7 +60,8 @@ export default {
       // 1.4.初始化滚动视图
       this.$nextTick(() => {
         if (!this.leftScroll) {
-          this.leftScroll = new BScroll(".leftWrapper", {
+          this.cateWrapper=true;
+          this.leftScroll = new BScroll(this.$refs.ratingsWrapper, {
             probeType: 3,
             click: true,
             scrollY: true,
@@ -77,6 +79,7 @@ export default {
         .then(res => {
           console.log(res);
           this.categoryList = res.data.cate;
+          this._initBScroll();
         })
         .catch(err => {});
     },
@@ -92,7 +95,6 @@ export default {
     async _initData() {
       this.getCategoryApi();
       this.getContentData();
-      this._initBScroll();
     },
     async clickLeftLi(index) {
       console.log(index);
@@ -100,7 +102,7 @@ export default {
       _this.currentIndex = index;
       setTimeout(() => {
         console.log(_this.$refs);
-        let menuLists = _this.$refs.sidebar_item;
+        let menuLists = _this.$refs.sidebarItem;
         let el = menuLists[index];
         console.log(el);
         _this.leftScroll.scrollToElement(el, 300);
@@ -138,6 +140,7 @@ export default {
   destroyed() {}, //生命周期 - 销毁完成
   activated() {
     this.$nextTick(() => {
+      console.log('activated')
       if (this.$route.params.currentIndex > -1) {
         this.clickLeftLi(this.$route.params.currentIndex + 1);
       }
