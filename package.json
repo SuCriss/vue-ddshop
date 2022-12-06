@@ -15,7 +15,7 @@
     "eruda": "^2.0.1",
     "fastclick": "^1.0.6",
     "pubsub-js": "^1.8.0",
-    "qs": "^6.9.1",
+    "qs": "^6.9.7",
     "register-service-worker": "^1.6.2",
     "reset-css": "^5.0.1",
     "svg-sprite-loader": "^4.1.6",
